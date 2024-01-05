@@ -14,6 +14,17 @@ data "aws_ami" "app_ami" {
   owners = ["979382823631"] # Bitnami
 }
 
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.app_ami.id
+  instance_type = var.instance_type
+
+  subnet_id = module.blog_vpc.public_subnets[0]
+
+  tags = {
+    Name = "Learning Terraform"
+  }
+}
+
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -77,16 +88,5 @@ module "alb" {
   tags = {
     Environment = "Development"
     Project     = "Example"
-  }
-}
-
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.app_ami.id
-  instance_type = var.instance_type
-
-  subnet_id = module.blog_vpc.public_subnets[0]
-
-  tags = {
-    Name = "Learning Terraform"
   }
 }
