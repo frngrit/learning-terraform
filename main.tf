@@ -21,11 +21,6 @@ resource "aws_dynamodb_table" "test-frank-table" {
   }
 
   attribute {
-    name = "Data"
-    type = "M"
-  }
-
-  attribute {
     name = "UpdatedOn"
     type = "S"
   }
