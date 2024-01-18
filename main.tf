@@ -25,16 +25,4 @@ resource "aws_dynamodb_table" "test-frank-table" {
     type = "S"
   }
 
-  local_secondary_index {
-    name            = "Idx-UpdatedOn"
-    range_key       = "UpdatedOn"
-    projection_type = "ALL"
-  }
-
-  global_secondary_index {
-    name            = "Idx-#Uuid-UpdatedOn"
-    hash_key        = "#Uuid"
-    range_key       = "UpdatedOn"
-    projection_type = "ALL"
-  }
 }
