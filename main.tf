@@ -2,7 +2,7 @@ resource "aws_dynamodb_table" "test-frank-table" {
   count            = 1
   name             = "test-frank-table"
   billing_mode     = "PAY_PER_REQUEST"
-  hash_key         = "Uuid"
+  hash_key         = "#Uuid"
   range_key        = "UpdatedOn"
   stream_enabled   = true
   stream_view_type = "NEW_AND_OLD_IMAGES"
@@ -16,7 +16,7 @@ resource "aws_dynamodb_table" "test-frank-table" {
   }
 
   attribute {
-    name = "Uuid"
+    name = "#Uuid"
     type = "S"
   }
 
@@ -32,8 +32,8 @@ resource "aws_dynamodb_table" "test-frank-table" {
   }
 
   global_secondary_index {
-    name            = "Idx-Uuid-UpdatedOn"
-    hash_key        = "Uuid"
+    name            = "Idx-#Uuid-UpdatedOn"
+    hash_key        = "#Uuid"
     range_key       = "UpdatedOn"
     projection_type = "ALL"
   }
