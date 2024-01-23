@@ -7,6 +7,7 @@ resource "aws_dynamodb_table" "test-frank-table" {
   stream_enabled   = true
   stream_view_type = "NEW_AND_OLD_IMAGES"
   write_capacity   = 1
+  read_capacity    = 1
   lifecycle {
     prevent_destroy = true
   }
